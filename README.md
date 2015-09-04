@@ -1,9 +1,9 @@
 # jpnevulator.py
 
-This software is implementation of the serial sniffing tool [jpnevulator][] in Python.
-It's aim is to emulate the command line interface and the output of the original tool as much as possible:
+This software is an implementation of the serial sniffing tool [jpnevulator][] in Python.
+It aims to emulate the command line interface and the output of the original tool as much as possible:
 
-    $ jpnevulator --ascii --timing-print \
+    $ jpnevulator.py --ascii --timing-print \
       --tty /dev/ttyS0:SB9600d \
       --tty "/dev/ttyUSB0:Motorola MTM800" \
       --read
@@ -17,15 +17,28 @@ It's aim is to emulate the command line interface and the output of the original
     00 12 05 06 39 00 12 05 06 39 1F 00 22 80 00 0E ....9....9.."...
     $ 
 
+### Completeness
+
+Not all command line parameters are implemented so far, but the most important ones are:
+
+* `--read`
+* `--tty NAME:ALIAS`
+* `--timing-delta MICROSECONDS`
+* `--timing-print`
+* `--ascii`
+* `--width WIDTH`
+
 ### Additional features
 
-One feature that is available in this Python implementation (and missing in the original tool) is setting the baudrates.
+One feature that is available in this Python implementation (and missing in the original tool) is controling the baudrates.
 This is supported by adding them to the tty device name separated by an `@`:
 
     jpnevulator --ascii --timing-print \
       --tty /dev/ttyUSB0@9600:SENDING \
       --tty /dev/ttyUSB1@9600:RECEIVING \
       --read
+
+Alternatively, you could also set the baudrate for all of them with the argument `--baudrate BAUDRATE`.
 
 ### Platform Independence
 
