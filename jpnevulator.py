@@ -113,7 +113,7 @@ def main():
             for tty in ttys:
                 if tty['buffer'] and (clock() - tty['last_byte']) > args.timing_delta/1E6:
                     line = '{0}: {1}\n'.format(dt.now().isoformat(' '), tty['alias'])
-                    sys.stdout.write(line.encode('ascii'))
+                    sys.stdout.write(line)
                     while tty['buffer']:
                         chunk = tty['buffer'][:args.width]
                         tty['buffer'] = tty['buffer'][args.width:]
@@ -124,10 +124,9 @@ def main():
                             line += ' ' + fmt.format(ascii=ascii_format(chunk))
                         line = line.strip()
                         line += '\n'
-                        sys.stdout.write(line.encode('ascii'))
+                        sys.stdout.write(line)
                     sys.stdout.flush()
     except KeyboardInterrupt:
-        #sys.stderr.write("Ctrl-C pressed, exiting...\n")
         sys.exit(1)
 
 if __name__ == "__main__": main()
