@@ -120,7 +120,7 @@ def main():
                         fmt = "{{hex:{0}s}}".format(args.width*3)
                         line = fmt.format(hex=hex_format(chunk))
                         if args.ascii:
-                            fmt = "{{ascii:{1}s}}".format(args.width)
+                            fmt = "{{ascii:{0}s}}".format(args.width)
                             line += ' ' + fmt.format(ascii=ascii_format(chunk))
                         line = line.strip()
                         line += '\n'
