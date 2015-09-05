@@ -33,7 +33,7 @@ Not all command line parameters are implemented so far, but the most important o
 One feature that is available in this Python implementation (and missing in the original tool) is controling the baudrates.
 This is supported by adding them to the tty device name separated by an `@`:
 
-    jpnevulator --ascii --timing-print \
+    jpnevulator.py --ascii --timing-print \
       --tty /dev/ttyUSB0@9600:SENDING \
       --tty /dev/ttyUSB1@9600:RECEIVING \
       --read
