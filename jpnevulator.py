@@ -23,6 +23,7 @@ jpnevulator [--version] [--help] [--checksum] [--crc16=poly]
 import argparse
 import sys
 import time
+import textwrap
 from datetime import datetime as dt
 
 import serial
@@ -87,7 +88,18 @@ def main():
     parser.add_argument('-a', '--ascii', action='store_true', help="Besides the hexadecimal output also display an extra column with the data in the ASCII representation. Non printable characters are displayed as a dot '.'. The ASCII data is displayed after the hexadecimal data.")
     parser.add_argument('-u', '--baudrate', type=int, default=9600, help='The baudrate to open the serial port at.')
     parser.add_argument('-i', '--width', type=int, default=16, help='The number of bytes to display on one line. The default is 16.')
+    parser.add_argument('-v', '--version', action='store_true', help='Output the version information, a small GPL notice and exit.')
     args = parser.parse_args()
+
+    if args.version:
+        print(textwrap.dedent("""
+        jpnevulator.py version 2.1.3
+        Copyright (C) 2015 Philipp Klaus <philipp.l.klaus@web.de>
+        This is free software.  You may redistribute copies of it under the terms of
+        the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
+        There is NO WARRANTY, to the extent permitted by law.
+        """))
+        sys.exit(0)
 
     if not args.ttys:
         parser.error('please provide at least one --tty')
